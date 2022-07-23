@@ -1,0 +1,7 @@
+fastapi
+feedparser
+httpx
+python-dateutil
+rich
+uvicorn[standard]
+git+git://github.com/GregDMeyer/IT8951.git
