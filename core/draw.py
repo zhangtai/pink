@@ -39,5 +39,5 @@ def draw_text_box(
         display.paddings,
         "\n".join(text_list),
         font=settings.BODY_FONT,
-        fill=(0, 0, 0)
+        fill=10
     )

@@ -26,7 +26,7 @@ class DisplayMode:
         ]
 
     def image(self) -> Image:
-        return Image.new(mode="RGB", size=self.size, color=(255, 255, 255))
+        return Image.new(mode="L", size=self.size, color=256)
 
 
 @dataclass
