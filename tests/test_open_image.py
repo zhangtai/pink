@@ -5,10 +5,13 @@ from core.draw import draw_cross
 
 
 def test_frame_can_map_to_display():
-    display_settings = settings.display.portait
-    img = Image.new(mode="RGB", size=display_settings.display_size, color=(255, 255, 255))
-    draw = ImageDraw.Draw(img)
-    # print(display_settings.frame_points)
-    for point in display_settings.frame_points():
-        draw_cross(draw, point)
-    img.show()
+    for _, display in settings.display.__dict__.items():
+        img = Image.new(mode="RGB", size=display.size, color=(255, 255, 255))
+        draw = ImageDraw.Draw(img)
+        for point in display.frame_points():
+            draw_cross(draw, point)
+        img.show()
+
+
+# def test_draw_multiline_text():
+#     display = settings.display.landscape
