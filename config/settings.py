@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from typing import Optional
 
+from IT8951.display import AutoEPDDisplay
 from PIL import Image, ImageFont
 
 DISPLAY_LONG_SIDE = 1872
@@ -14,7 +15,7 @@ BODY_FONT = ImageFont.truetype(FONT_PATH, BODY_FONT_SIZE)
 
 @dataclass
 class DisplayMode:
-    mode: str
+    name: str
     rotate: Optional[str]
     size: tuple[int, int]
     paddings: tuple[int, int]
@@ -37,17 +38,22 @@ class DisplayModes:
     landscape: DisplayMode
 
 
-display = DisplayModes(
+modes = DisplayModes(
     portrait=DisplayMode(
-        mode="PORTRAIT",
+        name="PORTRAIT",
         rotate="CCW",
         size=(DISPLAY_SHORT_SIDE, DISPLAY_LONG_SIDE),
         paddings=(40, 40),
     ),
     landscape=DisplayMode(
-        mode="LANDSCAPE",
+        name="LANDSCAPE",
         rotate=None,
         size=(DISPLAY_LONG_SIDE, DISPLAY_SHORT_SIDE),
         paddings=(40, 30),
     )
 )
+
+
+def get_display(rotate: str):
+    return AutoEPDDisplay(vcom=-1.42, rotate=rotate, mirror=True, spi_hz=24_000_000) 
+

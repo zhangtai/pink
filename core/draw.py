@@ -26,9 +26,9 @@ def draw_cross(draw: ImageDraw, point: tuple[int, int]) -> None:
 
 
 def draw_text_box(
-        display: settings.DisplayMode, draw: ImageDraw, text: str) -> None:
+        mode: settings.DisplayMode, draw: ImageDraw, text: str) -> None:
     width = int(2240/settings.BODY_FONT_SIZE) \
-        if display.mode == "PORTRAIT" \
+        if mode.name == "PORTRAIT" \
         else int(2960/settings.BODY_FONT_SIZE)
     wrapper = textwrap.TextWrapper(width=width)
     mylist = [wrapper.wrap(i) for i in text.split('\n') if i != '']
@@ -36,8 +36,9 @@ def draw_text_box(
     # text_size =
     # draw.textbbox(paddings, text="\n".join(text_list), font=settings.FONT)
     draw.multiline_text(
-        display.paddings,
+        mode.paddings,
         "\n".join(text_list),
         font=settings.BODY_FONT,
         fill=10
     )
+
