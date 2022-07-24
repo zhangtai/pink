@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import Optional
 
 from PIL import Image, ImageFont
 
@@ -14,6 +15,7 @@ BODY_FONT = ImageFont.truetype(FONT_PATH, BODY_FONT_SIZE)
 @dataclass
 class DisplayMode:
     mode: str
+    rotate: Optional[str]
     size: tuple[int, int]
     paddings: tuple[int, int]
 
@@ -38,12 +40,14 @@ class DisplayModes:
 display = DisplayModes(
     portrait=DisplayMode(
         mode="PORTRAIT",
+        rotate="CCW",
         size=(DISPLAY_SHORT_SIDE, DISPLAY_LONG_SIDE),
-        paddings=(40, 60),
+        paddings=(40, 40),
     ),
     landscape=DisplayMode(
         mode="LANDSCAPE",
+        rotate=None,
         size=(DISPLAY_LONG_SIDE, DISPLAY_SHORT_SIDE),
-        paddings=(60, 40),
+        paddings=(40, 30),
     )
 )

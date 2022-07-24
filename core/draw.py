@@ -29,7 +29,7 @@ def draw_text_box(
         display: settings.DisplayMode, draw: ImageDraw, text: str) -> None:
     width = int(2240/settings.BODY_FONT_SIZE) \
         if display.mode == "PORTRAIT" \
-        else int(3000/settings.BODY_FONT_SIZE)
+        else int(2960/settings.BODY_FONT_SIZE)
     wrapper = textwrap.TextWrapper(width=width)
     mylist = [wrapper.wrap(i) for i in text.split('\n') if i != '']
     text_list = list(itertools.chain(*mylist))
