@@ -25,7 +25,7 @@ def test_draw_multiline_text():
 LocalStack 1.0 is available with our Docker image, shipped for both our Community and Pro users, as well as all users of our newly introduced Team tier. LocalStack’s core emulation platform provides emulated cloud APIs, currently primarily focused on AWS cloud. It is presently being used by a large and active open source community with over 100K active users worldwide. With various features for individual productivity and team collaboration, we provide a comprehensive ecosystem of local AWS services, integrations and tools to make cloud development a breeze.
 
 With LocalStack 1.0, we mark the first milestone of LocalStack’s mission to become the go-to platform for local cloud development. We have spent the last year significantly re-shaping the codebase to make it easier to introduce and extend AWS services, improving parity with AWS. We have also introduced mechanisms to monitor parity, adding new Pro features and introducing a completely new Team tier focused on cross team collaboration. This blog looks at what’s new in LocalStack and what it means for our community and users."""
-    draw_text_box(draw_portrait, text, display_portrait)
-    draw_text_box(draw_landscape, text, display_landscape)
+    draw_text_box(display_portrait, draw_portrait, text)
+    draw_text_box(display_landscape, draw_landscape, text)
     img_portrait.show()
     img_landscape.show()
