@@ -4,3 +4,4 @@ mypy
 pillow
 pylint
 pytest
+python-escpos

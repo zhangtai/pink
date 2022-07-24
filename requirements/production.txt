@@ -7,3 +7,4 @@ python-dateutil
 rich
 uvicorn[standard]
 git+https://github.com/GregDMeyer/IT8951.git
+python-escpos
