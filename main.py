@@ -1,13 +1,12 @@
-from IT8951 import constants
 from PIL import ImageDraw
 
-from config import settings
+from config import pi as settings
 from core.draw import draw_text_box
 
 
 if __name__ == "__main__":
     mode = settings.modes.landscape
-    display = settings.get_display(mode.rotate)
+    display = settings.get_display(str(mode.rotate))
     text = """The initial approach was to create tiny spheres which were half white and half black, and which, depending on the electric charge, would rotate such that the white side or the black side would be visible on the display. Albert and Comiskey were told this approach was impossible by most experienced chemists and materials scientists and they had trouble creating these perfectly half-white, half-black spheres; during his experiments, Albert accidentally created some all-white spheres.[1]
 
 Comiskey experimented with charging and encapsulating those all-white particles in microcapsules mixed in with a dark dye. The result was a system of microcapsules that could be applied to a surface and could then be charged independently to create black and white images.[1] A first patent was filed by MIT for the microencapsulated electrophoretic display in October 1996.[6]
@@ -18,5 +17,4 @@ The scientific paper was featured on the cover of Nature, something extremely un
     draw = ImageDraw.Draw(display.frame_buf)
     display.clear()
     draw_text_box(mode, draw, text)
-    display.draw_partial(constants.DisplayModes.GC16)
-
+    display.draw_partial(settings.GC16)

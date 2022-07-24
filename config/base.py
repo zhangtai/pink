@@ -1,7 +1,6 @@
 from dataclasses import dataclass
 from typing import Optional
 
-from IT8951.display import AutoEPDDisplay
 from PIL import Image, ImageFont
 
 DISPLAY_LONG_SIDE = 1872
@@ -52,8 +51,3 @@ modes = DisplayModes(
         paddings=(40, 30),
     )
 )
-
-
-def get_display(rotate: str):
-    return AutoEPDDisplay(vcom=-1.42, rotate=rotate, mirror=True, spi_hz=24_000_000) 
-

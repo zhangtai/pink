@@ -1,6 +1,6 @@
 from PIL import ImageDraw
 
-from config import settings
+from config import base as settings
 from core.draw import draw_cross, draw_text_box
 
 
@@ -17,7 +17,7 @@ def test_draw_multiline_text():
     mode_portrait = settings.modes.portrait
     img_portrait = mode_portrait.image()
     draw_portrait = ImageDraw.Draw(img_portrait)
-    mode_landscape = settings.display.landscape
+    mode_landscape = settings.modes.landscape
     img_landscape = mode_landscape.image()
     draw_landscape = ImageDraw.Draw(img_landscape)
     text = """Today, we are excited to announce the general availability of LocalStack 1.0. This major release is a significant milestone towards our vision to propel developer productivity - by allowing dev teams to quickly and conveniently develop & test their cloud applications locally and across the CI/CD pipeline.
@@ -29,4 +29,3 @@ With LocalStack 1.0, we mark the first milestone of LocalStack’s mission to be
     draw_text_box(mode_landscape, draw_landscape, text)
     img_portrait.show()
     img_landscape.show()
-

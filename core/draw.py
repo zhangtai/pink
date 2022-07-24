@@ -3,7 +3,7 @@ import textwrap
 
 from PIL import ImageDraw
 
-from config import settings
+from config import base
 
 
 def draw_cross(draw: ImageDraw, point: tuple[int, int]) -> None:
@@ -26,10 +26,10 @@ def draw_cross(draw: ImageDraw, point: tuple[int, int]) -> None:
 
 
 def draw_text_box(
-        mode: settings.DisplayMode, draw: ImageDraw, text: str) -> None:
-    width = int(2240/settings.BODY_FONT_SIZE) \
+        mode: base.DisplayMode, draw: ImageDraw, text: str) -> None:
+    width = int(2240/base.BODY_FONT_SIZE) \
         if mode.name == "PORTRAIT" \
-        else int(2960/settings.BODY_FONT_SIZE)
+        else int(2960/base.BODY_FONT_SIZE)
     wrapper = textwrap.TextWrapper(width=width)
     mylist = [wrapper.wrap(i) for i in text.split('\n') if i != '']
     text_list = list(itertools.chain(*mylist))
@@ -38,7 +38,7 @@ def draw_text_box(
     draw.multiline_text(
         mode.paddings,
         "\n".join(text_list),
-        font=settings.BODY_FONT,
+        font=base.BODY_FONT,
         fill=10
     )
 
