@@ -1,7 +1,14 @@
 from dataclasses import dataclass
 
+from PIL import Image, ImageFont
+
 DISPLAY_LONG_SIDE = 1872
 DISPLAY_SHORT_SIDE = 1404
+FONT_PATH = 'fonts/JetBrainsMonoRegularNerdFontCompleteMono.ttf'
+HEAD_FONT_SIZE = 40
+BODY_FONT_SIZE = 32
+HEAD_FONT = ImageFont.truetype(FONT_PATH, HEAD_FONT_SIZE)
+BODY_FONT = ImageFont.truetype(FONT_PATH, BODY_FONT_SIZE)
 
 
 @dataclass
@@ -18,16 +25,19 @@ class DisplayMode:
             (self.paddings[0], self.size[1] - self.paddings[1]),
         ]
 
+    def image(self) -> Image:
+        return Image.new(mode="RGB", size=self.size, color=(255, 255, 255))
+
 
 @dataclass
 class DisplayModes:
-    portait: DisplayMode
+    portrait: DisplayMode
     landscape: DisplayMode
 
 
 display = DisplayModes(
-    portait=DisplayMode(
-        mode="PORTAIT",
+    portrait=DisplayMode(
+        mode="PORTRAIT",
         size=(DISPLAY_SHORT_SIDE, DISPLAY_LONG_SIDE),
         paddings=(40, 60),
     ),
