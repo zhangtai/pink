@@ -2,7 +2,6 @@ from dataclasses import dataclass
 import itertools
 from textwrap import TextWrapper
 
-from escpos.printer import Escpos, Network
 from PIL import Image, ImageDraw, ImageFont
 
 from .base import FONT_PATH
@@ -26,15 +25,11 @@ def text_to_list(text: str, width: int = 36) -> list[str]:
     return text_list
 
 
-class Device(object):
-    printer: Escpos = Network("192.168.3.4")
-    image: Image = Image.new(mode="L", size=(PAPER_WIDTH, PAPER_MAX_HEIGHT), color=255)
-    font: ImageFont = ImageFont.truetype(FONT_PATH, 24)
-    image_draw: ImageDraw
-
-    text_list: list[str] = []
-
+class PrinterImage(object):
     def __init__(self) -> None:
+        self.image: Image = Image.new(mode="L", size=(PAPER_WIDTH, PAPER_MAX_HEIGHT), color=255)
+        self.font: ImageFont = ImageFont.truetype(FONT_PATH, 32)
+        self.text_list: list[str] = []
         self.image_draw = ImageDraw.Draw(self.image)
 
     def add_text(self, text: str) -> None:
@@ -59,13 +54,6 @@ class Device(object):
                 font=self.font
             )[3]
         ))
-
-    def image_to_device(self) -> None:
-        self.printer.image(self.image)
-
-    def cut(self) -> None:
-        self.printer.cut()
-
 
 # F: 24, W: 36
 # F: 22, W: 36

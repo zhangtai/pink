@@ -1,11 +1,21 @@
-from config import tm as settings
+import calendar
+
+from escpos.printer import Network
+from PIL import Image, ImageDraw
+
+from config.tm import PrinterImage
 
 
-def test_print_display():
-    device = settings.Device()
-    text = "26. 27. 28. 29. 30. 31. 01.\n[ ] ,<! Get\n     \n Breakfast"
-    device.add_text(text)
-    device.draw_text()
-    device.crop()
-    device.image_to_device()
-    device.cut()
+def test_calendar():
+    printer = Network("192.168.3.4")
+    pi = PrinterImage()
+
+    img = Image.new(mode="L", size=(1664, 512), color=256)
+    draw = ImageDraw.Draw(img)
+    cal = calendar.Calendar(1)
+    header = ""
+    for day in cal.monthdatescalendar(2022, 7)[-1]:
+        header += (" " + str(day))
+    draw.text((20, 20), header, font=pi.font, fill=12)
+    printer.image(img.rotate(90, expand=True))
+    printer.cut()
